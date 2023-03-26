@@ -26,6 +26,8 @@
 #include <iostream>
 #include <stdio.h>
 #include <conio.h>
+#include <string>
+#include <cstring>
 using namespace std;
 
 typedef struct Producto {
@@ -76,7 +78,7 @@ int main(void){
 		}
 		cout<<endl<<"--MENU--"<<endl;
 		cout<<"0) EXIT"<<endl;
-		cout<<"1) Crear archivo de productos"<<endl;
+		cout<<"1) Crear archivo de productos / anadir producto"<<endl;
 		cout<<"2) Leer archivo de productos"<<endl;
 		cout<<"3) Crear archivo de reposicion"<<endl;
 		cout<<"4) Modificar precio de producto"<<endl;
@@ -91,6 +93,7 @@ int main(void){
 
 void crearArchivoProductos(void){
 	int codAux;
+	string descripcion;
 	
 	FILE * ArchProductos = fopen("Productos.dat","ab");
 	
@@ -103,8 +106,10 @@ void crearArchivoProductos(void){
 		cin>>codAux;
 		while(codAux != 0){
 			p.codigo = codAux;
-			cout<<"Descripcion: "<<endl;
-			cin>>p.descripcion;
+			cout<<"Descripcion: ";
+			getline(cin, descripcion);
+			getline(cin, descripcion);
+			strcpy(p.descripcion, descripcion.c_str());
 			cout<<"Stock: ";
 			cin>>p.stock;
 			cout<<"Precio: ";
